@@ -32,12 +32,17 @@ body { -webkit-tap-highlight-color: transparent; transition: background 0.3s; }
 </style>
 </head>
 <body class="bg-stone-50 text-stone-900 min-h-screen">
-<div id="root"><div class="p-10 text-center">Loading...</div></div>
+<div id="root"><div class="p-10 text-center font-bold text-amber-600 text-xl">Loading MyQRMenu...</div></div>
+
 <script>
-window.onerror = function(msg) {
-  document.getElementById('root').innerHTML = '<div style="padding:20px;text-align:center;"><h2 style="color:red;">⚠️ Error</h2><p>' + msg + '</p><button onclick="location.reload()" style="padding:10px;background:#d97706;color:white;border:none;border-radius:5px;">Reload</button></div>';
+window.onerror = function(msg, url, line, col, error) {
+  document.getElementById('root').innerHTML = '<div style="padding:20px;text-align:center;"><h2 style="color:red;font-weight:bold;">⚠️ Error</h2><p style="font-weight:bold;">' + msg + '</p><p style="font-size:12px;color:gray;">Line: ' + line + '</p><button onclick="location.reload()" style="padding:10px 20px;background:#d97706;color:white;border:none;border-radius:5px;margin-top:10px;font-weight:bold;">Reload</button></div>';
+  return false;
 };
 </script>
-<script type="module" src="./app.js"></script>
+
+<!-- type="module" काढून टाकलाय आणि एरर चेकर लावलाय -->
+<script src="./app.js" onerror="document.getElementById('root').innerHTML = '<div style=\'color:red; padding:20px; text-align:center; font-weight:bold; font-size:18px;\'>⚠️ app.js फाईल सापडत नाहीये!<br><br>कृपया तपासा की GitHub वर फाईलचे नाव अगदी <u>app.js</u> असेच आहे का.</div>'"></script>
+
 </body>
 </html>
